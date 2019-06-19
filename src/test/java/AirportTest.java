@@ -17,8 +17,17 @@ public class AirportTest {
 
     @Test
     void landsPlanes() {
+        when(fakeWeather.me()).thenReturn("sunny");
         airport.land();
         Assertions.assertEquals(1, airport.getPlanes().size());
+    }
+
+    @Test
+    void doesNotlandPlanes() {
+        when(fakeWeather.me()).thenReturn("stormy");
+        Assertions.assertThrows(RuntimeException.class, () -> {
+            airport.land();
+        });
     }
 
     @Test

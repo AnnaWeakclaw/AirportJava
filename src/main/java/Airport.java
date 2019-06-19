@@ -19,11 +19,16 @@ public class Airport {
 
 
     public void land() {
+        if (!checkWeather()) {
+            throw new RuntimeException("Weather is stormy");
+        }
        Plane plane = new Plane();
        planes.add(plane);
     }
 
-    public void checkWeather() {
+    public boolean checkWeather() {
+
         weather = air.me();
+        return weather == "sunny";
     }
 }
